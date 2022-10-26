@@ -68,6 +68,17 @@ If you find any issues with the add-on, please check the [issue tracker](https:/
 
 Feel free to create a PR for fixes and enhancements. 
 
+### Testing changes locally
+
+If you're submitting a change and wish to test locally:
+- Ensure "Watchdog" is turned off so the container isn't automatically restarted
+![image](https://user-images.githubusercontent.com/1923186/198087147-7ab2ba1e-1a68-41b8-9a84-76b25b329786.png)
+- Gain root access to your Home Assistant installation
+- Enter the `zigbee2mqtt` container interactively. For example, `docker exec -it $(docker ps -a | grep zigbee2mqtt | cut -d" " -f 1) /bin/bash`
+- Edit the file you'd like to test & save. For example, `vi app/node_modules/zigbee-herdsman-converters/converters/toZigbee.js`
+- Back on the Home Assistant installation, restart the `zigbee2mqtt` container: `docker restart $(docker ps -a | grep zigbee2mqtt | cut -d" " -f 1)`
+- Refresh the web UI and continue testing
+
 ## Credits
 - [danielwelch](https://github.com/danielwelch)
 - [ciotlosm](https://github.com/ciotlosm)
